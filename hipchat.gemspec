@@ -6,7 +6,7 @@ require 'hipchat/version'
 Gem::Specification.new do |spec|
   spec.name          = "hipchat"
   spec.version       = HipChat::VERSION
-  spec.authors       = ["HipChat/Atlassian"]
+  spec.authors       = ["HipChat/Atlassian","Jeff Olen"]
   spec.email         = ["support@hipchat.com"]
   spec.description   = %q{Ruby library to interact with HipChat}
   spec.summary       = %q{Ruby library to interact with HipChat}
