@@ -120,15 +120,19 @@ Capistrano::Configuration.instance(:must_exist).load do
     end
 
     def human
-      ENV['HIPCHAT_USER'] ||
-        fetch(:hipchat_human,
-              if (u = %x{git config user.name}.strip) != ""
-                u
-              elsif (u = ENV['USER']) != ""
-                u
-              else
-                "Someone"
-              end)
+      begin
+        ENV['HIPCHAT_USER'] ||
+          fetch(:hipchat_human,
+                if (u = %x{git config user.name}.strip) != ""
+                  u
+                elsif (u = ENV['USER']) != ""
+                  u
+                else
+                  "Someone"
+                end)
+      rescue => e
+        send("Failure in human method. error: #{e.message}  backtrace: #{e.backtrace}", send_options)
+      end
     end
 
     def env
